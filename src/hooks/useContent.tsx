@@ -14,9 +14,17 @@ export const ContentProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch("/content.json");
-        const json = await res.json();
-        setContent(json);
+        const res = await fetch("/content.json", { cache: "no-store" });
+        if (res.ok) {
+          const json = await res.json();
+          setContent(json);
+        } else {
+          setContent({});
+          console.error("Failed to load content.json:", res.status, res.statusText);
+        }
+      } catch (e) {
+        setContent({});
+        console.error("Error loading content.json:", e);
       } finally {
         setLoading(false);
       }
