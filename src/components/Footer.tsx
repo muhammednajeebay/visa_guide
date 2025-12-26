@@ -1,21 +1,12 @@
-import { Plane, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { useContent } from "@/hooks/useContent";
 
 const Footer = () => {
-  const quickLinks = [
-    { name: "About Us", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Destinations", href: "#destinations" },
-    { name: "FAQ", href: "#faq" },
-    { name: "Contact", href: "#contact" },
-  ];
+  const { content } = useContent();
+  const quickLinks = content?.footer?.quickLinks || [];
 
-  const services = [
-    "Tourist Visa",
-    "Business Visa",
-    "Student Visa",
-    "Work Visa",
-    "Visa Extension",
-  ];
+  const services = content?.footer?.services || [];
+  const brand = content?.footer?.brand || "VisaGuide";
 
   const socialLinks = [
     { icon: Facebook, href: "#" },
@@ -31,11 +22,17 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <a href="#home" className="flex items-center gap-2 mb-4">
-              <Plane className="h-6 w-6" />
-              <span className="text-xl font-bold">VisaGuide</span>
+              <img
+                src="/logo.jpeg"
+                alt={brand}
+                className="h-7 w-7 object-contain"
+                loading="eager"
+              />
+              <span className="text-xl font-bold">{brand}</span>
             </a>
             <p className="text-primary-foreground/70 text-sm mb-4">
-              Your trusted partner for hassle-free visa processing and travel documentation services.
+              {content?.footer?.description ||
+                "Your trusted partner for hassle-free visa processing and travel documentation services."}
             </p>
             <div className="flex gap-3">
               {socialLinks.map((social, index) => (
@@ -54,13 +51,13 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
+              {quickLinks.map((link: any) => (
+                <li key={link.name || link}>
                   <a
-                    href={link.href}
+                    href={link.href || "#"}
                     className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm"
                   >
-                    {link.name}
+                    {link.name || link}
                   </a>
                 </li>
               ))}
@@ -88,16 +85,15 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Contact Info</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/70">
-              <li>+1 (555) 123-4567</li>
-              <li>info@visaguide.com</li>
-              <li>123 Business District</li>
-              <li>New York, NY 10001</li>
+              {(content?.footer?.contact || []).map((c: string, i: number) => (
+                <li key={i}>{c}</li>
+              ))}
             </ul>
           </div>
         </div>
 
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-sm text-primary-foreground/60">
-          <p>&copy; {new Date().getFullYear()} VisaGuide. All rights reserved.</p>
+          <p>{content?.footer?.copyright || `© ${new Date().getFullYear()} VisaGuide. All rights reserved.`}</p>
         </div>
       </div>
     </footer>

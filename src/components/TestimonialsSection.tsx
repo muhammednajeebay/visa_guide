@@ -1,36 +1,19 @@
 import { Star } from "lucide-react";
+import { useContent } from "@/hooks/useContent";
 
 const TestimonialsSection = () => {
-  const testimonials = [
-    {
-      name: "Sarah Johnson",
-      location: "New York, USA",
-      text: "Super easy and stress-free process, my Schengen visa was approved in 7 days!",
-      rating: 5,
-    },
-    {
-      name: "Rahul Sharma",
-      location: "Mumbai, India",
-      text: "Professional team – helped me get my student visa for Canada. Highly recommended!",
-      rating: 5,
-    },
-    {
-      name: "Maria Garcia",
-      location: "Madrid, Spain",
-      text: "Best visa service! Transparent, reliable, and supportive throughout the entire process.",
-      rating: 5,
-    },
-  ];
+  const { content } = useContent();
+  const testimonials = content?.testimonials?.items || [];
 
   return (
     <section className="py-20 bg-secondary">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="text-sm font-semibold text-secondary-foreground/70 uppercase tracking-wider">
-            Testimonials
+            {content?.testimonials?.title || "Testimonials"}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-secondary-foreground mt-2 mb-4">
-            What Our Clients Say
+            {content?.testimonials?.heading || "What Our Clients Say"}
           </h2>
         </div>
 

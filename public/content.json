@@ -1,0 +1,158 @@
+{
+  "hero": {
+    "title": "Your Trusted Partner for Global Visa Services",
+    "subtitle": "Fast, reliable, and stress-free visa processing for travelers, students, and professionals.",
+    "ctaText": "Get In Touch",
+    "highlights": [
+      "Expert visa guidance",
+      "High approval success rate",
+      "Transparent pricing, no hidden fees",
+      "End-to-end support"
+    ]
+  },
+  "about": {
+    "title": "About Us",
+    "heading": "Simplifying Visa Applications Since 2009",
+    "paragraphs": [
+      "At GlobalVisa, we simplify the visa application process for travelers around the world. Whether it's tourism, business, study, or work visas, our dedicated team ensures every application is handled with care and precision.",
+      "With years of experience, we've successfully guided thousands of clients to their dream destinations. Our mission is to make international travel accessible to everyone through expert guidance and personalized service."
+    ],
+    "stats": [
+      { "value": "10,000+", "label": "Happy Clients" },
+      { "value": "98%", "label": "Success Rate" },
+      { "value": "15+", "label": "Years Experience" },
+      { "value": "24/7", "label": "Support Available" }
+    ]
+  },
+  "services": {
+    "sectionTitle": "Our Services",
+    "heading": "Comprehensive Visa Solutions",
+    "description": "From tourist to work visas, we offer complete visa processing services tailored to your travel needs.",
+    "items": [
+      {
+        "title": "Tourist Visa Assistance",
+        "description": "Travel stress-free with our expert guidance on tourist visas for top destinations worldwide.",
+        "cta": "Learn More"
+      },
+      {
+        "title": "Business Visa Services",
+        "description": "Support for professionals, entrepreneurs, and corporate travel needs.",
+        "cta": "Learn More"
+      },
+      {
+        "title": "Student Visa Guidance",
+        "description": "Helping students fulfill their dreams of studying abroad with step-by-step assistance.",
+        "cta": "Learn More"
+      },
+      {
+        "title": "Work & Freelance Visas",
+        "description": "Tailored solutions for skilled workers and freelancers seeking international opportunities.",
+        "cta": "Learn More"
+      },
+      {
+        "title": "Visa Extensions & Renewals",
+        "description": "Already abroad? We help with extensions and renewals without hassle.",
+        "cta": "Learn More"
+      }
+    ]
+  },
+  "destinations": {
+    "title": "Destinations",
+    "heading": "Countries We Cover",
+    "description": "We process visas for over 100+ countries. Here are some of our most popular destinations.",
+    "items": [
+      { "flag": "🇺🇸", "name": "USA" },
+      { "flag": "🇬🇧", "name": "United Kingdom" },
+      { "flag": "🇨🇦", "name": "Canada" },
+      { "flag": "🇦🇺", "name": "Australia" },
+      { "flag": "🇩🇪", "name": "Germany" },
+      { "flag": "🇫🇷", "name": "France" },
+      { "flag": "🇦🇪", "name": "UAE" },
+      { "flag": "🇸🇬", "name": "Singapore" }
+    ],
+    "note": "+ Schengen Countries, Asia, Middle East & More"
+  },
+  "whyChooseUs": {
+    "title": "Why Choose Us",
+    "heading": "Your Success is Our Priority",
+    "reasons": [
+      { "title": "Experienced Consultants", "description": "Our team has 15+ years of visa processing expertise." },
+      { "title": "Personalized Checklists", "description": "Get customized document lists for your specific visa type." },
+      { "title": "High Success Rate", "description": "98% approval rate with our expert guidance and review." },
+      { "title": "Affordable Packages", "description": "Competitive pricing with no hidden fees or surprises." },
+      { "title": "24/7 Support", "description": "Round-the-clock assistance for all your queries." }
+    ]
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "heading": "Simple 4-Step Process",
+    "description": "We've streamlined the visa application process to make it as simple as possible for you.",
+    "steps": [
+      { "step": "01", "title": "Submit Your Request", "description": "Fill our online form or contact us directly with your visa requirements." },
+      { "step": "02", "title": "Get Expert Advice", "description": "Receive a personalized checklist and eligibility assessment from our team." },
+      { "step": "03", "title": "We Handle the Process", "description": "We manage all paperwork, documentation review, and embassy submission." },
+      { "step": "04", "title": "Visa Approved", "description": "Collect your approved visa and travel with confidence to your destination." }
+    ]
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "heading": "What Our Clients Say",
+    "items": [
+      { "text": "Super easy and stress-free process, my Schengen visa was approved in 7 days!", "name": "Sarah Johnson", "location": "New York, USA", "rating": 5 },
+      { "text": "Professional team – helped me get my student visa for Canada. Highly recommended!", "name": "Rahul Sharma", "location": "Mumbai, India", "rating": 5 },
+      { "text": "Best visa service! Transparent, reliable, and supportive throughout the entire process.", "name": "Maria Garcia", "location": "Madrid, Spain", "rating": 5 }
+    ]
+  },
+  "faq": {
+    "title": "FAQ",
+    "heading": "Frequently Asked Questions",
+    "description": "Find answers to common questions about our visa services.",
+    "items": [
+      { "question": "How long does it take to get a visa?", "answer": "Processing times vary by country – anywhere from a few days to several weeks. Tourist visas are typically faster (5-15 business days), while work and student visas may take 4-8 weeks. We'll provide an accurate timeline based on your destination." },
+      { "question": "Can you guarantee visa approval?", "answer": "We cannot guarantee approvals as the final decision rests with the embassy. However, our 98% success rate reflects our expertise in preparing strong applications that meet all requirements." },
+      { "question": "What documents do I need for a visa application?", "answer": "Documents vary by visa type but typically include: valid passport, photographs, proof of funds, travel itinerary, and supporting documents. We provide a personalized checklist based on your specific application." },
+      { "question": "Do you provide travel insurance and flight booking support?", "answer": "Yes! We offer comprehensive travel support including travel insurance, flight bookings, and hotel reservations to make your journey completely hassle-free." },
+      { "question": "What are your service fees?", "answer": "Our fees vary based on the visa type and destination country. We believe in transparent pricing with no hidden charges. Contact us for a free quote tailored to your requirements." }
+    ]
+  },
+  "contact": {
+    "title": "Contact Us",
+    "heading": "Get in Touch",
+    "description": "Ready to start your visa application? Contact us today for a free consultation.",
+    "form": { "submitText": "Submit Request" },
+    "info": [
+      { "title": "Phone", "content": "+1 (555) 123-4567" },
+      { "title": "Email", "content": "info@globalvisa.com" },
+      { "title": "Office", "content": "123 Business District, New York, NY 10001" },
+      { "title": "Hours", "content": "Mon-Fri: 9AM-6PM, Sat: 10AM-4PM" }
+    ],
+    "ctaTitle": "Free Consultation",
+    "ctaDescription": "Not sure which visa you need? Book a free 15-minute consultation with our experts.",
+    "ctaButton": "Book Free Call"
+  },
+  "footer": {
+    "brand": "VisaGuide",
+    "description": "Your trusted partner for hassle-free visa processing and travel documentation services.",
+    "quickLinks": [
+      { "name": "About Us", "href": "#about" },
+      { "name": "Services", "href": "#services" },
+      { "name": "Destinations", "href": "#destinations" },
+      { "name": "FAQ", "href": "#faq" },
+      { "name": "Contact", "href": "#contact" }
+    ],
+    "services": [
+      "Tourist Visa",
+      "Business Visa",
+      "Student Visa",
+      "Work Visa",
+      "Visa Extension"
+    ],
+    "contact": [
+      "+1 (555) 123-4567",
+      "info@visaguide.com",
+      "123 Business District",
+      "New York, NY 10001"
+    ],
+    "copyright": "© 2025 VisaGuide. All rights reserved."
+  }
+}

@@ -1,14 +1,11 @@
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useContent } from "@/hooks/useContent";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
-  const highlights = [
-    "Expert visa guidance",
-    "High approval success rate",
-    "Transparent pricing, no hidden fees",
-    "End-to-end support",
-  ];
+  const { content } = useContent();
+  const highlights = content?.hero?.highlights || [];
 
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-16">
@@ -27,15 +24,15 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
-            Your Trusted Partner for Global Visa Services
+            {content?.hero?.title || "Your Trusted Partner for Global Visa Services"}
           </h1>
           <p className="text-xl md:text-2xl text-primary-foreground/80 mb-8">
-            Fast, reliable, and stress-free visa processing for travelers, students, and professionals.
+            {content?.hero?.subtitle || "Fast, reliable, and stress-free visa processing for travelers, students, and professionals."}
           </p>
 
           <div className="flex flex-wrap gap-4 mb-10">
             <Button size="lg" className="bg-accent text-foreground hover:bg-accent/90" asChild>
-              <a href="#contact">Get In Touch</a>
+              <a href="#contact">{content?.hero?.ctaText || "Get In Touch"}</a>
             </Button>
           </div>
 

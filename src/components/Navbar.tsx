@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { Menu, X, Plane } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useContent } from "@/hooks/useContent";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { content } = useContent();
+  const brand = content?.footer?.brand || "VisaGuide";
 
   const navLinks = [
     { name: "Home", href: "#home" },
@@ -19,8 +22,13 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <a href="#home" className="flex items-center gap-2">
-            <Plane className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold text-foreground">VisaGuide</span>
+            <img
+              src="/logo.jpeg"
+              alt={brand}
+              className="h-7 w-7 object-contain"
+              loading="eager"
+            />
+            <span className="text-xl font-bold text-foreground">{brand}</span>
           </a>
 
           {/* Desktop Navigation */}

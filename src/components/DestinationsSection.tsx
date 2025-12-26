@@ -1,27 +1,22 @@
+import { useContent } from "@/hooks/useContent";
+
 const DestinationsSection = () => {
-  const destinations = [
-    { name: "USA", flag: "🇺🇸" },
-    { name: "United Kingdom", flag: "🇬🇧" },
-    { name: "Canada", flag: "🇨🇦" },
-    { name: "Australia", flag: "🇦🇺" },
-    { name: "Germany", flag: "🇩🇪" },
-    { name: "France", flag: "🇫🇷" },
-    { name: "UAE", flag: "🇦🇪" },
-    { name: "Singapore", flag: "🇸🇬" },
-  ];
+  const { content } = useContent();
+  const destinations = content?.destinations?.items || [];
 
   return (
     <section id="destinations" className="py-20 bg-primary">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="text-sm font-semibold text-primary-foreground/70 uppercase tracking-wider">
-            Destinations
+            {content?.destinations?.title || "Destinations"}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mt-2 mb-4">
-            Countries We Cover
+            {content?.destinations?.heading || "Countries We Cover"}
           </h2>
           <p className="text-primary-foreground/80 max-w-2xl mx-auto">
-            We process visas for over 100+ countries. Here are some of our most popular destinations.
+            {content?.destinations?.description ||
+              "We process visas for over 100+ countries. Here are some of our most popular destinations."}
           </p>
         </div>
 
@@ -38,7 +33,7 @@ const DestinationsSection = () => {
         </div>
 
         <p className="text-center text-primary-foreground/70 mt-8">
-          + Schengen Countries, Asia, Middle East & More
+          {content?.destinations?.note || "+ Schengen Countries, Asia, Middle East & More"}
         </p>
       </div>
     </section>
