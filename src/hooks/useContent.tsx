@@ -14,7 +14,8 @@ export const ContentProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch("/content.json", { cache: "no-store" });
+        const url = `${import.meta.env.BASE_URL}content.json`;
+        const res = await fetch(url, { cache: "no-store" });
         if (res.ok) {
           const json = await res.json();
           setContent(json);

@@ -23,7 +23,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           <a href="#home" className="flex items-center gap-2">
             <img
-              src="/logo.jpeg"
+              src={`${import.meta.env.BASE_URL}logo.png`}
               alt={brand}
               className="h-7 w-7 object-contain"
               loading="eager"

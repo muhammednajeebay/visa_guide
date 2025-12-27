@@ -23,7 +23,7 @@ const Footer = () => {
           <div>
             <a href="#home" className="flex items-center gap-2 mb-4">
               <img
-                src="/logo.jpeg"
+                src={`${import.meta.env.BASE_URL}logo.png`}
                 alt={brand}
                 className="h-7 w-7 object-contain"
                 loading="eager"
