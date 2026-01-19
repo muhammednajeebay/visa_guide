@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - VisaGuide</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        body {
+            padding-top: 0;
+            background: #f3f4f6;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Layout */
+        .admin-nav {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0 30px;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        .dashboard-layout {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Sidebar Tabs */
+        .sidebar {
+            width: 250px;
+            background: white;
+            border-right: 1px solid var(--border-gray);
+            overflow-y: auto;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tab-btn {
+            padding: 15px 20px;
+            border: none;
+            background: none;
+            text-align: left;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--dark-gray);
+            border-left: 4px solid transparent;
+            transition: 0.2s;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .tab-btn:hover {
+            background: #f9fafb;
+            color: var(--primary-blue);
+        }
+
+        .tab-btn.active {
+            background: #eff6ff;
+            color: var(--primary-blue);
+            border-left-color: var(--primary-blue);
+        }
+
+        /* Main Content */
+        .content-area {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .form-section {
+            display: none;
+            max-width: 800px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 60px;
+            /* Space for fixed save button */
+        }
+
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Form Controls */
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-gray);
+            border-radius: 6px;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--trust-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(46, 125, 209, 0.1);
+        }
+
+        /* Nested Objects / Arrays */
+        .nested-group {
+            margin-left: 20px;
+            padding-left: 20px;
+            border-left: 2px solid var(--border-gray);
+            margin-bottom: 20px;
+        }
+
+        .array-item {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            position: relative;
+            border: 1px solid var(--border-gray);
+        }
+
+        .btn-remove {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #fee2e2;
+            color: #dc2626;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .btn-add {
+            background: #ecfdf5;
+            color: #059669;
+            border: 1px solid #a7f3d0;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        /* Floating Save Bar */
+        .save-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            padding: 15px 30px;
+            border-top: 1px solid var(--border-gray);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .status-msg {
+            margin-right: 15px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .status-success {
+            color: #059669;
+        }
+
+        .status-error {
+            color: #dc2626;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Nav -->
+    <nav class="admin-nav">
+        <h3>VisaGuide CMS</h3>
+        <div>
+            <span style="font-size: 0.9rem; opacity: 0.8; margin-right: 15px;">Logged in as Admin</span>
+            <button onclick="logout()" class="btn-outline"
+                style="color: white; border-color: rgba(255,255,255,0.3); padding: 5px 15px; font-size: 0.85rem;">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Layout -->
+    <div class="dashboard-layout">
+        <aside class="sidebar" id="sidebar">
+            <!-- Tabs injected here -->
+        </aside>
+
+        <main class="content-area">
+            <div id="formsContainer">
+                <!-- Forms injected here -->
+                <div style="text-align: center; margin-top: 100px; color: #666;">
+                    Loading content...
+                </div>
+            </div>
+
+            <!-- Sticky Save Bar inside content area to be always accessible if we want, or fixed -->
+        </main>
+
+        <div class="save-bar">
+            <span id="statusMsg" class="status-msg"></span>
+            <button onclick="saveData()" class="btn-primary">Save Changes</button>
+        </div>
+    </div>
+
+    <script>
+        // Auth Check
+        if (localStorage.getItem('isAdmin') !== 'true') { window.location.href = 'auth.html'; }
+
+        let currentData = {};
+
+        const sidebar = document.getElementById('sidebar');
+        const container = document.getElementById('formsContainer');
+        const statusMsg = document.getElementById('statusMsg');
+
+        // Initial Load
+        async function loadData() {
+            try {
+                const res = await fetch('/static/data.json');
+                currentData = await res.json();
+                renderUI(currentData);
+            } catch (err) {
+                console.error(err);
+                container.innerHTML = '<p style="color:red; text-align:center; margin-top:50px;">Error loading data.</p>';
+            }
+        }
+
+        // Render Tabs and Forms
+        function renderUI(data) {
+            sidebar.innerHTML = '';
+            container.innerHTML = '';
+
+            const keys = Object.keys(data); // hero, about, etc.
+
+            keys.forEach((key, index) => {
+                // 1. Create Tab
+                const btn = document.createElement('button');
+                btn.className = `tab-btn ${index === 0 ? 'active' : ''}`;
+                btn.textContent = capitalize(key);
+                btn.onclick = () => switchTab(key, btn);
+                sidebar.appendChild(btn);
+
+                // 2. Create Form Section
+                const formDiv = document.createElement('div');
+                formDiv.className = `form-section ${index === 0 ? 'active' : ''}`;
+                formDiv.id = `section-${key}`;
+                formDiv.innerHTML = `<h2>${capitalize(key)} Section</h2>`;
+
+                // 3. Generate Fields
+                generateFields(data[key], formDiv, [key]);
+
+                container.appendChild(formDiv);
+            });
+        }
+
+        // Recursive Field Generator
+        function generateFields(obj, parentEl, path) {
+            if (typeof obj !== 'object' || obj === null) return;
+
+            // Arrays
+            if (Array.isArray(obj)) {
+                // We assume arrays contain objects of uniform type or strings
+                const arrayContainer = document.createElement('div');
+                arrayContainer.className = 'form-group';
+
+                const label = document.createElement('label');
+                label.textContent = capitalize(path[path.length - 1]);
+                arrayContainer.appendChild(label);
+
+                const itemsDiv = document.createElement('div');
+                itemsDiv.id = `list-${path.join('-')}`;
+
+                // Render existing items
+                obj.forEach((item, idx) => {
+                    const itemWrapper = createArrayItemWrapper(item, [...path, idx], itemsDiv, obj);
+                    itemsDiv.appendChild(itemWrapper);
+                });
+
+                arrayContainer.appendChild(itemsDiv);
+
+                // Add Button
+                const addBtn = document.createElement('button');
+                addBtn.type = 'button';
+                addBtn.className = 'btn-add';
+                addBtn.textContent = '+ Add Item';
+                addBtn.onclick = () => {
+                    // Clone structure of first item or empty string
+                    const template = obj.length > 0 ? obj[0] : (typeof obj[0] === 'string' ? '' : {});
+                    // Deep clone if object
+                    const newItem = typeof template === 'object' ? JSON.parse(JSON.stringify(template)) : "";
+
+                    // If object, clear values
+                    if (typeof newItem === 'object') {
+                        Object.keys(newItem).forEach(k => newItem[k] = "");
+                    }
+
+                    // Add to data model
+                    // We need a way to update `currentData` dynamically. 
+                    // Actually, simpler approach: Just render UI, and rely on inputs to update `currentData` reference? 
+                    // No, we should modify the data object and re-render this array part.
+                    // For simplicity in this robust editor, we'll re-render the whole array UI or just append.
+
+                    // Let's modify the actual pointer in currentData
+                    const arr = getNestedValue(currentData, path);
+                    arr.push(newItem);
+
+                    // Re-render this specific array container's children is best, but for MVP re-render whole UI is safer 
+                    // Re-rendering whole UI loses focus. Let's append DOM.
+                    const newIdx = arr.length - 1;
+                    const wrapper = createArrayItemWrapper(newItem, [...path, newIdx], itemsDiv, arr);
+                    itemsDiv.appendChild(wrapper);
+                };
+
+                arrayContainer.appendChild(addBtn);
+                parentEl.appendChild(arrayContainer);
+                return;
+            }
+
+            // Objects
+            Object.keys(obj).forEach(k => {
+                const val = obj[k];
+                const currentPath = [...path, k];
+
+                if (Array.isArray(val)) {
+                    generateFields(val, parentEl, currentPath);
+                } else if (typeof val === 'object' && val !== null) {
+                    const group = document.createElement('div');
+                    group.className = 'nested-group';
+                    const title = document.createElement('h4');
+                    title.textContent = capitalize(k);
+                    title.style.marginBottom = '10px';
+                    group.appendChild(title);
+
+                    generateFields(val, group, currentPath);
+                    parentEl.appendChild(group);
+                } else {
+                    // Primitive (String/Number/Boolean)
+                    const group = document.createElement('div');
+                    group.className = 'form-group';
+
+                    const label = document.createElement('label');
+                    label.textContent = capitalize(k);
+
+                    const input = document.createElement(val.length > 60 ? 'textarea' : 'input');
+                    if (val.length > 60) input.rows = 3;
+                    else input.type = typeof val === 'number' ? 'number' : 'text';
+
+                    input.value = val;
+
+                    // Data Binding
+                    input.oninput = (e) => {
+                        setNestedValue(currentData, currentPath, e.target.value);
+                    };
+
+                    group.appendChild(label);
+                    group.appendChild(input);
+                    parentEl.appendChild(group);
+                }
+            });
+        }
+
+        function createArrayItemWrapper(item, path, container, parentArray) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'array-item';
+
+            // Remove Btn
+            const removeBtn = document.createElement('button');
+            removeBtn.className = 'btn-remove';
+            removeBtn.textContent = 'Remove';
+            removeBtn.onclick = () => {
+                // Find index based on current DOM position because indices shift
+                const idx = Array.from(container.children).indexOf(wrapper);
+                parentArray.splice(idx, 1);
+                wrapper.remove();
+            };
+            wrapper.appendChild(removeBtn);
+
+            // If item is object, recurse
+            if (typeof item === 'object') {
+                generateFields(item, wrapper, path);
+            } else {
+                // Primitive in array (e.g. list of strings)
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.value = item;
+                input.style.width = '90%';
+                input.oninput = (e) => {
+                    // Array of primitives, we need to update parentArray by index
+                    // But index might shift if we rely on 'path'. 
+                    // Better to rely on live index from DOM or object reference if possible. 
+                    const idx = Array.from(container.children).indexOf(wrapper);
+                    parentArray[idx] = e.target.value;
+                };
+                wrapper.appendChild(input);
+            }
+            return wrapper;
+        }
+
+        // Helpers
+        function switchTab(key, btn) {
+            // Update Sidebar
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Update Content
+            document.querySelectorAll('.form-section').forEach(f => f.classList.remove('active'));
+            document.getElementById(`section-${key}`).classList.add('active');
+        }
+
+        function capitalize(str) {
+            return str.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
+        }
+
+        function getNestedValue(obj, path) {
+            return path.reduce((o, k) => (o || {})[k], obj);
+        }
+
+        function setNestedValue(obj, path, value) {
+            const lastKey = path.pop();
+            const lastObj = path.reduce((o, k) => o[k], obj);
+            lastObj[lastKey] = value;
+            path.push(lastKey); // Restore for other refs
+        }
+
+        async function saveData() {
+            const btn = document.querySelector('.save-bar .btn-primary');
+            const originalText = btn.textContent;
+            btn.textContent = 'Saving...';
+            btn.disabled = true;
+
+            try {
+                // Since `currentData` is mutually bound to inputs, we just send it.
+                const res = await fetch('/api/save-portfolio', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(currentData)
+                });
+
+                if (res.ok) {
+                    showStatus('Changes saved!', 'success');
+                } else {
+                    showStatus('Server error.', 'error');
+                }
+            } catch (err) {
+                showStatus('Network error.', 'error');
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        function showStatus(msg, type) {
+            statusMsg.textContent = msg;
+            statusMsg.className = `status-msg status-${type}`;
+            setTimeout(() => { statusMsg.textContent = ''; }, 3000);
+        }
+
+        function logout() {
+            localStorage.removeItem('isAdmin');
+            window.location.href = 'auth.html';
+        }
+
+        loadData();
+    </script>
+</body>
+
+</html>
