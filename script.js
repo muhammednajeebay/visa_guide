@@ -12,8 +12,15 @@ async function fetchData() {
         const data = await response.json();
         renderApp(data);
         setupScrollAnimations();
+        
+        // Hide Loader with slight delay for smoothness
+        setTimeout(() => {
+            document.getElementById('loader').classList.add('hidden');
+        }, 800);
+        
     } catch (error) {
         console.error('Error fetching data:', error);
+        document.querySelector('.loading-text').textContent = "Error Loading Content";
     }
 }
 
