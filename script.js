@@ -156,7 +156,9 @@ function renderDestinations(dest) {
     
     document.getElementById('destinations-grid').innerHTML = dest.items.map(item => `
         <div class="destination-card">
-            <span class="flag-emoji">${item.flag}</span>
+            <div class="flag-img-container">
+                <img src="https://flagcdn.com/w160/${item.flag}.png" alt="${item.name} Flag" class="flag-img">
+            </div>
             <span class="country-name">${item.name}</span>
         </div>
     `).join('');
